@@ -1,5 +1,5 @@
 {
-  "name": "css-theme",
+  "name": "@pfe-/css-theme",
   "private": false,
   "version": "0.0.0",
   "type": "module",
