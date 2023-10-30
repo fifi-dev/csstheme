@@ -1,17 +1,19 @@
 {
   "name": "@pfe-css-theme/css-theme",
   "private": false,
+  "description": "Library allowing you to generate your CSS style automatically using a theme",
   "version": "0.0.0",
   "type": "module",
+  "author": "Karen Azoulay, Fideline Bazana Ntomo, Coralie Ouedraogo",
   "files": [
     "dist"
   ],
-  "main": "./dist/my-library.umd.cjs",
-  "module": "./dist/my-library.js",
+  "main": "./dist/css-theme.umd.cjs",
+  "module": "./dist/css-theme.js",
   "exports": {
     ".": {
-      "import": "./dist/my-library.js",
-      "require": "./dist/my-library.umd.cjs"
+      "import": "./dist/css-theme.js",
+      "require": "./dist/css-theme.umd.cjs"
     }
   },
   "scripts": {
