@@ -2,32 +2,14 @@
   "name": "@pfe-css-theme/css-theme",
   "private": false,
   "description": "Library allowing you to generate your CSS style automatically using a theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "author": "Karen Azoulay, Fideline Bazana Ntomo, Coralie Ouedraogo",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/css-theme.umd.cjs",
-  "module": "./dist/css-theme.js",
-  "exports": {
-    ".": {
-      "import": "./dist/css-theme.js",
-      "require": "./dist/css-theme.umd.cjs"
-    }
+  "bin": {
+    "theme": ".bin/command.js"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "postinstall": "postinstall.js"
   },
-  "dependencies": {
-    "vue": "^3.3.4"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "vue-tsc": "^1.8.5"
-  }
+  "dependencies": {}
 }
