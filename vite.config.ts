@@ -8,8 +8,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.js'),
-      name: 'MyLibrary',
-      fileName: 'my-library',
+      name: 'CssTheme',
+      fileName: 'css-theme',
     },
   },
 })
