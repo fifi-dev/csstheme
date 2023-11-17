@@ -2,7 +2,7 @@
   "name": "@pfe-css-theme/css-theme",
   "private": false,
   "description": "Library allowing you to generate your CSS style automatically using a theme",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "type": "module",
   "author": "Karen Azoulay, Fideline Bazana Ntomo, Coralie Ouedraogo",
   "bin": {
