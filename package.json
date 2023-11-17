@@ -2,14 +2,15 @@
   "name": "@pfe-css-theme/css-theme",
   "private": false,
   "description": "Library allowing you to generate your CSS style automatically using a theme",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "author": "Karen Azoulay, Fideline Bazana Ntomo, Coralie Ouedraogo",
   "bin": {
     "theme": "./bin/command.js"
   },
   "scripts": {
-    "postinstall": "node postinstall.js"
+    "postinstall": "node postinstall.js",
+    "theme": "node ./bin/command.js"
   },
   "dependencies": {}
 }
