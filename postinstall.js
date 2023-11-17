@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const packagePath = process.cwd().replace("node_modules/cssTheme", "package.json");
+const packagePath = process.cwd().replace("node_modules/@pfe-css-theme/css-theme", "package.json");
 const customScripts = { theme: "theme" };
 
 const packageJson = JSON.parse(await fs.readFileSync(packagePath, "utf-8"));

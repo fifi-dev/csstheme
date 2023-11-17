@@ -1,8 +1,9 @@
+#!/usr/bin/env node
 import fs from "fs"
-import themesLists from "../lib/main.js"
+import themesLists from "../lib/themes.js"
 
 // Get theme name
-if(process.argv.length != 3){
+if(process.argv.length !== 3){
     console.error("USAGE : npm run theme <themeName>")
     process.exit(0)
 }
