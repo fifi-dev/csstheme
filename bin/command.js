@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "fs"
-import {findVariablesCSS} from "./findVariablesCSS.js";
+import {findFile} from "./findFile.js";
+import {generateVariable} from "./generateVariable.js";
 import themesLists from "../lib/themes.js"
 import readlineSync from "readline-sync";
 
@@ -19,24 +20,13 @@ if (themeName === -1) {
 const selectedThemeName = availableThemes[themeName];
 const theme = themesLists[selectedThemeName];
 
-const variablesCSSPath = findVariablesCSS();
+const variablesCSSPath = findFile();
 
-// Generate variables
-const generateCSS = (variables) => {
-    let cssString = ':root {\n';
-
-    for (const [name, value] of Object.entries(variables)) {
-        cssString += `  --${name}: ${value};\n`;
-    }
-
-    cssString += '}\n';
-    return cssString;
-};
 
 if (variablesCSSPath) {
     // Delete content of variables.css before writing new variables
     fs.writeFileSync(variablesCSSPath, '');
-    fs.writeFileSync(variablesCSSPath, generateCSS(theme.colors));
+    fs.writeFileSync(variablesCSSPath, generateVariable(theme));
 } else {
     console.error("variables.css not found in the project. Please create it.");
 }
