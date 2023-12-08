@@ -1,5 +1,5 @@
-export const generateVariable = (theme) => {
-    let cssString = ':root {\n';
+export const generateVariable = (theme, nameTheme) => {
+    let cssString = `/* Theme: ${nameTheme} */\n:root {\n`;
 
     for (const section in theme) {
         if (Object.hasOwnProperty.call(theme, section)) {

@@ -23,8 +23,8 @@ const findFileInDirectory = (directory, fileName) => {
 };
 
 // Function to find variables.css in the project
-export const findFile = () => {
+export const findFile = (file) => {
     // Assuming this script is in the root of your project
     const projectRoot = process.cwd();  // Get the current working directory
-    return findFileInDirectory(projectRoot, "variables.css");
+    return findFileInDirectory(projectRoot, file);
 };

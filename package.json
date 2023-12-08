@@ -6,11 +6,11 @@
   "type": "module",
   "author": "Karen Azoulay, Fideline Bazana Ntomo, Coralie Ouedraogo",
   "bin": {
-    "theme": "./bin/command.js"
+    "cssTheme": "./bin/command.js"
   },
   "scripts": {
     "postinstall": "node postinstall.js",
-    "theme": "node ./bin/command.js"
+    "cssTheme": "node ./bin/command.js"
   },
   "dependencies": {
     "readline-sync": "^1.4.10"

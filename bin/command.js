@@ -20,13 +20,13 @@ if (themeName === -1) {
 const selectedThemeName = availableThemes[themeName];
 const theme = themesLists[selectedThemeName];
 
-const variablesCSSPath = findFile();
-
+// Search if file variables exist
+const variablesCSSPath = findFile("cssTheme.css");
 
 if (variablesCSSPath) {
     // Delete content of variables.css before writing new variables
     fs.writeFileSync(variablesCSSPath, '');
-    fs.writeFileSync(variablesCSSPath, generateVariable(theme));
+    fs.writeFileSync(variablesCSSPath, generateVariable(theme, selectedThemeName));
 } else {
-    console.error("variables.css not found in the project. Please create it.");
+    console.error("cssTheme.css not found in the project. Please create it.");
 }
