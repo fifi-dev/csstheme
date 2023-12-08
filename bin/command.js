@@ -2,8 +2,10 @@
 import fs from "fs"
 import {findFile} from "./findFile.js";
 import {generateVariable} from "./generateVariable.js";
+import {generateConfig} from "./generateConfig.js"
 import themesLists from "../lib/themes.js"
 import readlineSync from "readline-sync";
+import { createRequire } from 'module';
 
 // List all available theme names
 const availableThemes = Object.keys(themesLists);
@@ -27,6 +29,9 @@ if (variablesCSSPath) {
     // Delete content of variables.css before writing new variables
     fs.writeFileSync(variablesCSSPath, '');
     fs.writeFileSync(variablesCSSPath, generateVariable(theme, selectedThemeName));
+    generateConfig(selectedThemeName);
 } else {
     console.error("cssTheme.css not found in the project. Please create it.");
 }
+
+// TEST
