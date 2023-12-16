@@ -1,4 +1,4 @@
-export const generateVariable = (theme, nameTheme) => {
+export const generateVariable = (theme, nameTheme, test) => {
     let cssString = `/* Theme: ${nameTheme} */\n:root {\n`;
 
     for (const section in theme) {
@@ -18,6 +18,7 @@ export const generateVariable = (theme, nameTheme) => {
     }
 
     cssString += '}\n';
+    cssString += test;
 
     return cssString;
 };

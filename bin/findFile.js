@@ -22,7 +22,7 @@ const findFileInDirectory = (directory, fileName) => {
     return null;
 };
 
-// Function to find variables.css in the project
+// Function to find file in the project
 export const findFile = (file) => {
     // Assuming this script is in the root of your project
     const projectRoot = process.cwd();  // Get the current working directory
