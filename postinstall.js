@@ -1,6 +1,7 @@
 import fs from "fs";
+import path from "path";
 
-const packagePath = process.cwd().replace("node_modules/@pfe-css-theme/css-theme", "package.json");
+const packagePath = path.resolve(process.cwd(), "package.json");
 
 // Check if packagePath points to a directory
 const stats = fs.statSync(packagePath);
