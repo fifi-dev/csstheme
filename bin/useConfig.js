@@ -30,8 +30,6 @@ export const updateConfig = async (themeName, configFilePath) => {
 
         // Write the updated file
         fs.writeFileSync(configFilePath, updatedConfig, 'utf-8');
-
-        console.log(`The theme has been updated with "${themeName}"`);
     } catch (err) {
         console.error(`Error updating theme : ${err.message}`);
     }
@@ -44,8 +42,8 @@ export const readConfigFile = async (configFilePath) => {
         const modulePath = path.resolve(configFilePath);
         const cssThemeModule = await import(modulePath);
 
-        // Return personalization values
-        return cssThemeModule.default.customVariable;
+        // Return cssTheme values
+        return cssThemeModule.default;
     } catch (err) {
         console.error(`Error reading config file : ${err.message}`);
         return null;
