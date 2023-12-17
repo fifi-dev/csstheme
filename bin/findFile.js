@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-// Function to recursively search for a file in a directory
+// Searching for a file in a directory
 const findFileInDirectory = (directory, fileName) => {
     const files = fs.readdirSync(directory);
 
@@ -22,9 +22,8 @@ const findFileInDirectory = (directory, fileName) => {
     return null;
 };
 
-// Function to find file in the project
+// Find a file in the project
 export const findFile = (file) => {
-    // Assuming this script is in the root of your project
-    const projectRoot = process.cwd();  // Get the current working directory
+    const projectRoot = process.cwd();
     return findFileInDirectory(projectRoot, file);
 };
