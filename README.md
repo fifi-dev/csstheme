@@ -14,6 +14,7 @@ Install css-theme with npm
 ```
 
 Create a CSS file in your project named "cssTheme" because it is in this file that the variables will be generated.
+If you don't create it, it will be automatically generated in the root of your project.
 
 You now have the possibility to generate the theme of your choice with this command:
 ```bash
