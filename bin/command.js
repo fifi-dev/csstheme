@@ -9,7 +9,7 @@ import themesLists from "../lib/themes.js"
 
 // Search if files exist
 let variablesCSSPath = findFile("cssTheme.css");
-const configFilePath = findFile("cssTheme.config.js");
+const configFilePath = findFile("cssTheme.config.mjs");
 
 if (!variablesCSSPath) {
     // Create cssTheme.css at the base of the project
