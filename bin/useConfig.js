@@ -12,7 +12,7 @@ export const useConfig = (themeName) => {
     };
 
     const configFileContent = `const cssThemeConfig = ${JSON.stringify(cssThemeConfig, null, 2).replace(/"([^"]+)":/g, '$1:')};\n\nexport default cssThemeConfig;\n`;
-    fs.writeFileSync('./cssTheme.config.js', configFileContent, 'utf-8');
+    fs.writeFileSync('./cssTheme.config.mjs', configFileContent, 'utf-8');
 };
 
 // Modifying the config file

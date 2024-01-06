@@ -18,7 +18,7 @@ If you don't create it, it will be automatically generated in the root of your p
 
 You now have the possibility to generate the theme of your choice with this command:
 ```bash
-  npm run cssTheme
+  cssTheme
 ```
 You now have your "cssTheme.css" file filled with the variables of the theme you have chosen.
 
@@ -48,7 +48,7 @@ The "comment" allow you to comment on your code, so don't hesitate to use them.
 
 Once your file is completed, you can rerun the order : 
 ```bash
-  npm run cssTheme
+  cssTheme
 ```
 
 And you will find in your "cssTheme.css" file the variables of your theme as well as the one that you added in the config file.
