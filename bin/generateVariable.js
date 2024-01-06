@@ -1,17 +1,21 @@
-export const generateVariable = (theme) => {
-    let cssString = ':root {\n';
+// Generating CSS variables
+export const generateVariable = (valuesToGenerate) => {
+    let cssString = `:root {\n`;
 
-    for (const section in theme) {
-        if (Object.hasOwnProperty.call(theme, section)) {
-            const variables = theme[section];
-
-            if (variables.comment) {
-                cssString += `/* ${variables.comment} */\n`;
-            }
-
-            for (const [name, value] of Object.entries(variables)) {
-                if (name !== 'comment') {
-                    cssString += `  --${name}: ${value};\n`;
+    for (const { values, comment } of valuesToGenerate) {
+        cssString += comment;
+        for (const section in values) {
+            if (Object.hasOwnProperty.call(values, section)) {
+                const variables = values[section];
+                if (variables) {
+                    if (variables.comment) {
+                        cssString += `/* ${variables.comment} */\n`;
+                    }
+                    for (const [name, value] of Object.entries(variables)) {
+                        if (name !== 'comment') {
+                            cssString += `  --${name}: ${value};\n`;
+                        }
+                    }
                 }
             }
         }

@@ -13,16 +13,44 @@ Install css-theme with npm
   npm install @pfe-css-theme/css-theme
 ```
 
-At the base of the project, please create a directory named "assets", inside which you will need to add a "css" subdirectory. In the latter, place a CSS file named “variables”.
+Create a CSS file in your project named "cssTheme" because it is in this file that the variables will be generated.
 
-You now have the possibility to generate the theme of your choice by replacing themeName with the name of the theme you want:
+You now have the possibility to generate the theme of your choice with this command:
 ```bash
-  npm run theme themeName
+  npm run cssTheme
+```
+You now have your "cssTheme.css" file filled with the variables of the theme you have chosen.
+
+## Custom variable
+To create your own custom variables, you must define them in your "cssTheme.config.js" file which is located at the root of your project.
+
+To do this, here is an example of your cssTheme.config.js:
+```javascript
+const cssThemeConfig = {
+  theme: "Barbie",
+  customVariable: {
+    colors: {
+        comment: 'Custom colors',
+        white: '#CCCCCC'
+    },
+    spacing: {
+        comment: 'Small spacing',
+        smallPadding: '10px 5px',
+        smallMargin: '15px 10px'
+    },
+  }
+};
+
+export default cssThemeConfig;
+```
+The "comment" allow you to comment on your code, so don't hesitate to use them.
+
+Once your file is completed, you can rerun the order : 
+```bash
+  npm run cssTheme
 ```
 
-Your "variables.css" file now contains the specific values of your selected theme.
-
-
+And you will find in your "cssTheme.css" file the variables of your theme as well as the one that you added in the config file.
 ## Authors
 
 - [AZOULAY Karen](https://github.com/Karen160)
