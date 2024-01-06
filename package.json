@@ -12,5 +12,7 @@
     "postinstall": "node postinstall.js",
     "theme": "node ./bin/command.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }

@@ -2,21 +2,22 @@
 import fs from "fs"
 import {findVariablesCSS} from "./findVariablesCSS.js";
 import themesLists from "../lib/themes.js"
+import readlineSync from "readline-sync";
 
-// Get theme name
-if(process.argv.length !== 3){
-    console.error("USAGE : npm run theme <themeName>")
-    process.exit(0)
+// List all available theme names
+const availableThemes = Object.keys(themesLists);
+console.log("Available themes:", availableThemes.join(", "));
+
+// Allow user to select a theme interactively
+const themeName = readlineSync.keyInSelect(availableThemes, "Select a theme:", { cancel: false });
+
+if (themeName === -1) {
+    console.error("Theme selection canceled. Exiting.");
+    process.exit(0);
 }
-const themeName = process.argv[2]
 
-
-// Find theme
-const theme = themesLists[themeName]
-if(!theme){
-    console.error("Theme not found")
-    process.exit(0)
-}
+const selectedThemeName = availableThemes[themeName];
+const theme = themesLists[selectedThemeName];
 
 const variablesCSSPath = findVariablesCSS();
 
