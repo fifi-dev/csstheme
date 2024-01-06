@@ -1,58 +1,62 @@
 #!/usr/bin/env node
 import fs from "fs"
 import {findFile} from "./findFile.js";
-import {generateVariable} from "./generateVariable.js";
+import {generateVariable, generateThemeVariables} from "./generateVariable.js";
 import {updateConfig, useConfig, readConfigFile} from "./useConfig.js"
-import themesLists from "../lib/themes.js"
+import {choiceTheme} from "./choiceTheme.js";
 import readlineSync from "readline-sync";
-
-// List all available theme names
-const availableThemes = Object.keys(themesLists);
-console.log("Available themes:", availableThemes.join(", "));
-
-// Allow user to select a theme interactively
-const themeName = readlineSync.keyInSelect(availableThemes, "Select a theme:", {cancel: false});
-
-if (themeName === -1) {
-    console.error("Theme selection canceled. Exiting.");
-    process.exit(0);
-}
-
-const selectedThemeName = availableThemes[themeName];
-const theme = themesLists[selectedThemeName];
+import themesLists from "../lib/themes.js"
 
 // Search if files exist
 const variablesCSSPath = findFile("cssTheme.css");
 const configFilePath = findFile("cssTheme.config.js");
 
-// Values to generate in the variablesCSSPath
-const valuesToGenerate = [
-    {
-        values : theme,
-        comment : `/* Theme: ${selectedThemeName} */\n`
-    }
-]
-
-let customVariable;
-
 if (variablesCSSPath) {
+    let selectedThemeName;
+    let theme;
+    let valuesToGenerate;
+
+    if (!configFilePath) {
+        // Choice theme
+        selectedThemeName = choiceTheme();
+        theme = themesLists[selectedThemeName];
+        // Create config file
+        useConfig(selectedThemeName);
+        // Generate theme variable
+        valuesToGenerate = generateThemeVariables(selectedThemeName, theme, undefined);
+    } else {
+        const config = await readConfigFile(configFilePath);
+
+        // If custom theme is set
+        if (config.theme) {
+            // Know if we change the theme or keep the same one
+            const changeTheme = readlineSync.keyInYNStrict(`Your theme is ${config.theme}. Do you want to change it?`);
+            selectedThemeName = changeTheme ? choiceTheme() : config.theme;
+            theme = themesLists[selectedThemeName];
+
+            // If theme doesn't exist
+            if (theme === undefined) {
+                console.error("Theme doesn't exist");
+                process.exit(0);
+            }
+        } else {
+            // Choice theme
+            selectedThemeName = choiceTheme();
+            theme = themesLists[selectedThemeName];
+        }
+        // Updating the config file
+        updateConfig(selectedThemeName, configFilePath);
+        // Generate theme and custom variables
+        valuesToGenerate = generateThemeVariables(selectedThemeName, theme, config.customVariable);
+    }
+
     // Delete content from the css variable file before writing new variables
     fs.writeFileSync(variablesCSSPath, '');
 
-    // Configuring the config.js file
-    if(configFilePath){
-        updateConfig(selectedThemeName, configFilePath);
-        customVariable = await readConfigFile(configFilePath);
-        valuesToGenerate.push({
-            values : customVariable,
-            comment : `\n/* Custom variables */\n`
-        })
-    }else{
-        useConfig(selectedThemeName)
-    }
-
     // Generation of theme variables and custom ones
     fs.writeFileSync(variablesCSSPath, generateVariable(valuesToGenerate));
+
+    console.log(`Your theme ${selectedThemeName} is ready`);
 } else {
     console.error("cssTheme.css not found in the project. Please create it.");
 }
